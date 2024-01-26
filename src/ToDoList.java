@@ -95,10 +95,11 @@ public class ToDoList extends JFrame implements ActionListener {
 	{
 		this.setLayout(new BorderLayout());
 		this.setTitle("ToDoList Manager");
-		this.setSize(640,260);
+		this.setSize(700,400);
 		this.setResizable(false);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);	//Makes the program terminate properly when the close button is pressed
-	
+		this.setLocationRelativeTo(null);				//Centers the window on the screen
+
 		//adding the Menu bar to the window and to the action listener
 		menubar1 = new JMenuBar();						// Makes a new menu bar (now you can add items to this menu...)
 		this.setJMenuBar(menubar1); 					// Attaches the named menubar (menubar1) to the window
@@ -285,7 +286,7 @@ public class ToDoList extends JFrame implements ActionListener {
 				while(textFile.hasNextLine())
 				{
 					String tString = textFile.nextLine();
-					String [] str = tString.split("¬");		//use "¬" to differentiate between each block of information and store it in a new array
+					String [] str = tString.split("ï¿½");		//use "ï¿½" to differentiate between each block of information and store it in a new array
 					
 					Task t = new Task();					//create a new task
 					//Add task details from string
