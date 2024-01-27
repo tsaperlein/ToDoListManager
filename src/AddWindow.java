@@ -14,11 +14,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-/**
- * Class used to add Task data to the ToDoList
- * @author Charles Henry
- *
- */
+// Class used to add task data to the ToDoList
 public class AddWindow extends JFrame implements ActionListener{
 	
 	private static JLabel taskName;
@@ -31,37 +27,38 @@ public class AddWindow extends JFrame implements ActionListener{
 	private static JTextField taskNameDisplay;
 	private static JPanel startDatePanel;
 	private static JPanel endDatePanel;
-	private static JComboBox priorityCombo;
+	private static JComboBox<String> priorityCombo;
 	private static JTextField percCompDisplay;
-	private static JComboBox categoryCombo;
+	private static JComboBox<String> categoryCombo;
 	private static JTextField noteDisplay;
 	private static JPanel mainPanel;
 	private static JPanel lowerPanel;
 	private static JButton add;
 	private static JButton cancel;
 	
-	private static JComboBox dayCombo;
-	private static JComboBox monthCombo;
-	private static JComboBox yearCombo;
-	private static JComboBox endDayCombo;
-	private static JComboBox endMonthCombo;
-	private static JComboBox endYearCombo;
+	private static JComboBox<String> dayCombo;
+	private static JComboBox<String> monthCombo;
+	private static JComboBox<String> yearCombo;
+	private static JComboBox<String> endDayCombo;
+	private static JComboBox<String> endMonthCombo;
+	private static JComboBox<String> endYearCombo;
 	
 	private static String[] priorityList = {"Low", "Medium", "High", "Other"};
-	private static String[] categoryList = {"Personal", "Social", "Business", "School", "Other"};
+	private static String[] categoryList = {"Personal", "Business", "School", "Social", "Household Chore", "Other"};
 	private static String[] day = {"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"};
 	private static String[] month = {"1","2","3","4","5","6","7","8","9","10","11","12"};
-	private static String[] year = {"2010","2011","2012","2013","2014","2015","2016","2017","2018","2019","2020"};
-	/**
-	 * Method used to create the Add window
-	 */
+	private static String[] year = { "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022","2023", "2024" };
+	
+	// Method used to create the Add window
 	AddWindow()
-	{	
+	{
 		this.setLayout(new BorderLayout());
 		this.setTitle("Add Task");
-		this.setSize(350,220);
+		this.setSize(400, 300);
 		this.setResizable(false);
-		
+		this.setLocationRelativeTo(null); // Centers the window on the screen
+
+		// Add task labels
 		taskName = new JLabel("Task Name: ");
 		startDate = new JLabel("Start Date: ");
 		endDate = new JLabel("End Date: ");
@@ -69,29 +66,33 @@ public class AddWindow extends JFrame implements ActionListener{
 		percComp = new JLabel("Percent Complete: ");
 		category = new JLabel("Category: ");
 		note = new JLabel("Note: ");
-		taskNameDisplay  = new JTextField("");
-		startDatePanel 	 = new JPanel(new GridLayout(1,3));
-		dayCombo = new JComboBox(day);
-		monthCombo = new JComboBox(month);
-		yearCombo = new JComboBox(year);
+		taskNameDisplay = new JTextField("");
+
+		// Start Date Panel
+		startDatePanel = new JPanel(new GridLayout(1, 3));
+		dayCombo = new JComboBox<String>(day);
+		monthCombo = new JComboBox<String>(month);
+		yearCombo = new JComboBox<String>(year);
 		startDatePanel.add(dayCombo);
 		startDatePanel.add(monthCombo);
 		startDatePanel.add(yearCombo);
-		
-		endDatePanel 	 = new JPanel(new GridLayout(1,3));
-		endDayCombo = new JComboBox(day);
-		endMonthCombo = new JComboBox(month);
-		endYearCombo = new JComboBox(year);
+
+		// End Date Panel
+		endDatePanel = new JPanel(new GridLayout(1, 3));
+		endDayCombo = new JComboBox<String>(day);
+		endMonthCombo = new JComboBox<String>(month);
+		endYearCombo = new JComboBox<String>(year);
 		endDatePanel.add(endDayCombo);
 		endDatePanel.add(endMonthCombo);
 		endDatePanel.add(endYearCombo);
-		
-		priorityCombo 	 = new JComboBox(priorityList);
-		percCompDisplay  = new JTextField("");
-		categoryCombo  	 = new JComboBox(categoryList);
-		noteDisplay  	 = new JTextField("");
-		
-		mainPanel = new JPanel(new GridLayout(7, 2));				//Create a panel with a grid layout
+
+		priorityCombo = new JComboBox<String>(priorityList);
+		percCompDisplay = new JTextField();
+		categoryCombo = new JComboBox<String>(categoryList);
+		noteDisplay = new JTextField();
+
+		// Add the labels and the text fields to the main panel
+		mainPanel = new JPanel(new GridLayout(7, 2));				// Create a panel with a grid layout
 		mainPanel.add(taskName);		mainPanel.add(taskNameDisplay);
 		mainPanel.add(startDate);		mainPanel.add(startDatePanel);
 		mainPanel.add(endDate);			mainPanel.add(endDatePanel);
@@ -99,40 +100,35 @@ public class AddWindow extends JFrame implements ActionListener{
 		mainPanel.add(percComp);		mainPanel.add(percCompDisplay);
 		mainPanel.add(category);		mainPanel.add(categoryCombo);
 		mainPanel.add(note);			mainPanel.add(noteDisplay);
-		this.getContentPane().add(BorderLayout.CENTER, mainPanel);	//Add the panel to the CENTER of the BorderLayout
-		
+		this.getContentPane().add(BorderLayout.CENTER, mainPanel);	// Add the panel to the CENTER of the BorderLayout
 		
 		add = new JButton("Add");
 		cancel = new JButton("Cancel");
 		add.addActionListener(this);
 		cancel.addActionListener(this);
 
-		
 		lowerPanel = new JPanel(new FlowLayout());
 		lowerPanel.add(add);
 		lowerPanel.add(cancel);
-		this.getContentPane().add(BorderLayout.SOUTH, lowerPanel);	//Add the panel to the SOUTH of the BorderLayout
-		/**
-		 * Method used to clear the text fields when the window is closed
-		 */
-		this.addWindowListener(new WindowAdapter()
-		{
-			public void windowClosing(WindowEvent we)
-		    {
-		        clearText();
-		    }
+		this.getContentPane().add(BorderLayout.SOUTH, lowerPanel); // Add the panel to the SOUTH of the BorderLayout
+
+		// Method used to clear the text fields when the window is closed
+		this.addWindowListener(new WindowAdapter() {
+			// Method used to manage variables when the task window is closed
+			public void windowClosing(WindowEvent we) {
+				clearText();
+			}
 		});
-		
+
 		clearText();
 		validate();
 	}
-	/**
-	 * Method used to reset the window to its default state, empty text fields etc
-	 */
+	
+	// Method used to reset the window to its default state, empty text fields etc.
 	public void clearText()
 	{
 		taskNameDisplay.setText("");
-		
+
 		dayCombo.setSelectedItem("1");
 		monthCombo.setSelectedItem("1");
 		yearCombo.setSelectedItem("2012");
@@ -140,32 +136,43 @@ public class AddWindow extends JFrame implements ActionListener{
 		endDayCombo.setSelectedItem("1");
 		endMonthCombo.setSelectedItem("1");
 		endYearCombo.setSelectedItem("2012");
-		
-		priorityCombo.setSelectedItem("Other");
+
+		priorityCombo.setSelectedItem("Medium");
 		percCompDisplay.setText("");
 		categoryCombo.setSelectedItem("Personal");
 		noteDisplay.setText("");
 	}
-	/**
-	 * Method used to track actions performed
-	 */
+	
+	// Method used to track actions performed
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == add)
 		{
 			try
 			{
+				// If any of the fields are empty, then display an error message
 				if(taskNameDisplay.getText().equals("") || percCompDisplay.getText().equals("") || noteDisplay.getText().equals(""))
 				{
 					JOptionPane.showMessageDialog(null, "Please fill in all of the fields.");
 				}
+
+				// If the percentage field is not a number, then display an error message
 				else if(taskNameDisplay.getText().equals("") || Integer.parseInt(percCompDisplay.getText()) < 0 || Integer.parseInt(percCompDisplay.getText()) > 100)
 				{
 					JOptionPane.showMessageDialog(null, "Please fill in a number from '0' to '100' in the percentage field.");
 				}
-				else if(!(Integer.parseInt(percCompDisplay.getText()) >= 0 || Integer.parseInt(percCompDisplay.getText()) <= 100))
+
+				// If the year is bicentennial, then the days for february are 1 to 29
+				else if(Integer.parseInt((String) yearCombo.getSelectedItem()) % 4 == 0 && Integer.parseInt((String) monthCombo.getSelectedItem()) == 2 && Integer.parseInt((String) dayCombo.getSelectedItem()) > 29)
 				{
-					JOptionPane.showMessageDialog(null, "Please fill in a number from '0' to '100' in the percentage field.");
+					JOptionPane.showMessageDialog(null, "Please fill in a valid date.");
 				}
+				
+				// If the year is not bicentennial, then the days for february are 1 to 28
+				else if(Integer.parseInt((String) yearCombo.getSelectedItem()) % 4 != 0 && Integer.parseInt((String) monthCombo.getSelectedItem()) == 2 && Integer.parseInt((String) dayCombo.getSelectedItem()) > 28)
+				{
+					JOptionPane.showMessageDialog(null, "Please fill in a valid date.");
+				}
+
 				else if(Integer.parseInt(percCompDisplay.getText()) >= 0 || Integer.parseInt(percCompDisplay.getText()) <= 100)
 				{
 					ToDoList.myTasks.add(new Task(taskNameDisplay.getText(),
@@ -190,5 +197,4 @@ public class AddWindow extends JFrame implements ActionListener{
 			ToDoList.add1.setVisible(false);
 		}
 	}
-	
 }
