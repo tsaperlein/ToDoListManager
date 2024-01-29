@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.time.LocalDate;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -49,12 +50,14 @@ public class AddWindow extends JFrame implements ActionListener{
 	private static String[] month = {"1","2","3","4","5","6","7","8","9","10","11","12"};
 	private static String[] year = { "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022","2023", "2024" };
 	
+	private static LocalDate now = LocalDate.now();
+
 	// Method used to create the Add window
 	AddWindow()
 	{
 		this.setLayout(new BorderLayout());
 		this.setTitle("Add Task");
-		this.setSize(400, 300);
+		this.setSize(500, 250);
 		this.setResizable(false);
 		this.setLocationRelativeTo(null); // Centers the window on the screen
 
@@ -92,7 +95,7 @@ public class AddWindow extends JFrame implements ActionListener{
 		noteDisplay = new JTextField();
 
 		// Add the labels and the text fields to the main panel
-		mainPanel = new JPanel(new GridLayout(7, 2));				// Create a panel with a grid layout
+		mainPanel = new JPanel(new GridLayout(7, 2)); // Create a panel with a grid layout
 		mainPanel.add(taskName);		mainPanel.add(taskNameDisplay);
 		mainPanel.add(startDate);		mainPanel.add(startDatePanel);
 		mainPanel.add(endDate);			mainPanel.add(endDatePanel);
@@ -129,13 +132,13 @@ public class AddWindow extends JFrame implements ActionListener{
 	{
 		taskNameDisplay.setText("");
 
-		dayCombo.setSelectedItem("1");
-		monthCombo.setSelectedItem("1");
-		yearCombo.setSelectedItem("2012");
+		dayCombo.setSelectedItem(String.valueOf(now.getDayOfMonth()));
+		monthCombo.setSelectedItem(String.valueOf(now.getMonthValue()));
+		yearCombo.setSelectedItem(String.valueOf(now.getYear()));
 
-		endDayCombo.setSelectedItem("1");
-		endMonthCombo.setSelectedItem("1");
-		endYearCombo.setSelectedItem("2012");
+		endDayCombo.setSelectedItem(String.valueOf(now.getDayOfMonth()));
+		endMonthCombo.setSelectedItem(String.valueOf(now.getMonthValue()));
+		endYearCombo.setSelectedItem(String.valueOf(now.getYear()));
 
 		priorityCombo.setSelectedItem("Medium");
 		percCompDisplay.setText("");

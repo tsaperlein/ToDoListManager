@@ -85,12 +85,12 @@ public class ToDoList extends JFrame implements ActionListener {
 	
 	public ToDoList()
 	{
-		this.setLayout(new BorderLayout());
-		this.setTitle("ToDoList Manager");
-		this.setSize(700,400);
+		this.setLayout(new BorderLayout());					// Set the layout of the window to BorderLayout
+		this.setTitle("ToDoList Manager");			// Set the title of the window
+		this.setSize(600,350);					// Set the size of the window
 		this.setResizable(false);
-		this.setDefaultCloseOperation(EXIT_ON_CLOSE);	// Makes the program terminate properly when the close button is pressed
-		this.setLocationRelativeTo(null); // Centers the window on the screen
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);		// Makes the program terminate properly when the close button is pressed
+		this.setLocationRelativeTo(null); 				// Centers the window on the screen
 
 		// Adding the Menu bar to the window and to the action listener
 		menubar1 = new JMenuBar();							// Makes a new menu bar (now you can add items to this menu...)
@@ -262,7 +262,7 @@ public class ToDoList extends JFrame implements ActionListener {
 				textFile = new Scanner(f);
 				while (textFile.hasNextLine()) {
 					String tString = textFile.nextLine();
-					String[] str = tString.split("|"); // Use "|" to differentiate between each block of information and store it in a new array
+					String[] str = tString.split("�"); // Use "�" to differentiate between each block of information and store it in a new array
 
 					// Create a new task
 					Task t = new Task();
@@ -321,11 +321,7 @@ public class ToDoList extends JFrame implements ActionListener {
 	// Method used to track actions performed
 	public void actionPerformed(ActionEvent e) 
 	{
-		if (e.getSource() == addItem)
-		{
-			add1.setVisible(true);	// Open the add window
-		}
-		if (e.getSource() == add)
+		if (e.getSource() == addItem || e.getSource() == add)
 		{
 			add1.setVisible(true);	// Open the add window
 		}
@@ -354,11 +350,7 @@ public class ToDoList extends JFrame implements ActionListener {
 				noteDisplay.setText("");
 			}
 		}
-		if (e.getSource() == edit)
-		{
-			edit();
-		}
-		if (e.getSource() == editSelItem)
+		if (e.getSource() == editSelItem || e.getSource() == edit)
 		{
 			edit();
 		}

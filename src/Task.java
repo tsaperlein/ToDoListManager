@@ -111,6 +111,6 @@ public class Task {
 	
 	// Method used to output the task data used for exporting into files
 	public String toStringExport() {
-		return getName() +"|"+ getStartDate().getDay() +"|"+ getStartDate().getMonth() +"|"+ getStartDate().getYear() +"|"+ getEndDate().getDay() +"|"+ getEndDate().getMonth() +"|"+ getEndDate().getYear() +"|"+ getPriority() +"|"+ getPercentComplete() +"|"+ getCategory() +"|"+ getNote();
+		return getName() +"�"+ getStartDate().getDay() +"�"+ getStartDate().getMonth() +"�"+ getStartDate().getYear() +"�"+ getEndDate().getDay() +"�"+ getEndDate().getMonth() +"�"+ getEndDate().getYear() +"�"+ getPriority() +"�"+ getPercentComplete() +"�"+ getCategory() +"�"+ getNote();
 	}
 }
